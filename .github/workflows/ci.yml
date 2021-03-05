@@ -52,6 +52,6 @@ jobs:
 
       - name: Upload JaCoCo coverage report
         uses: actions/upload-artifact@v2
-#        with:
-#          name: jacoco-report
-#          path: build/reports/jacoco/test/
+        with:
+          name: jacoco-report
+          path: build/reports/jacoco/test/
