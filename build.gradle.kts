@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.4.31"
     id("tech.formatter-kt.formatter") version "0.7.3"
+    id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
 }
 
 group = "me.ilex"

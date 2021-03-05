@@ -17,7 +17,7 @@ fun median(seq: Array<Int>): Double {
     if (seq.size % 2 == 0) {
         return arrayOf(
             seq[floor((seq.size / 2).toDouble() - 1).toInt()],
-            seq[ceil((seq.size / 2).toDouble()).toInt()],
+            seq[ceil((seq.size / 2).toDouble()).toInt()]
         ).average()
     }
 
