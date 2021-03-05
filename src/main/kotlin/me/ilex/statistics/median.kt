@@ -3,7 +3,7 @@ package me.ilex.statistics
 import kotlin.math.ceil
 import kotlin.math.floor
 
-fun median(seq: Array<Int>): Double {
+fun median(seq: Array<Double>): Double {
     if (seq.isEmpty()) {
         return 0.0
     }
@@ -21,5 +21,7 @@ fun median(seq: Array<Int>): Double {
         ).average()
     }
 
-    return seq[floor((seq.size / 2).toDouble()).toInt()].toDouble()
+    return seq[floor((seq.size / 2).toDouble()).toInt()]
 }
+
+fun median(seq: Array<Int>): Double = median(seq.map { it.toDouble() }.toTypedArray())
