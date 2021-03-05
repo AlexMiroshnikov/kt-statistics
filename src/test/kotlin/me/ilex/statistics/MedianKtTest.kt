@@ -18,11 +18,11 @@ internal class MedianKtTest {
 
     @Test
     fun `it returns median - if array of odd length gt 1 is given`() {
-        assertEquals(2.0, mean(arrayOf(1, 2, 3)))
+        assertEquals(2.0, median(arrayOf(1, 2, 3)))
     }
 
     @Test
     fun `it returns median - if array of even length gt 1 is given`() {
-        assertEquals(1.5, mean(arrayOf(1, 2)))
+        assertEquals(1.5, median(arrayOf(1, 2)))
     }
 }
