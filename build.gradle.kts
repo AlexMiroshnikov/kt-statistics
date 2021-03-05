@@ -2,14 +2,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.4.31"
+    id("tech.formatter-kt.formatter") version "0.7.3"
 }
 
 group = "me.ilex"
 version = "0.0.1-dev"
 
-repositories {
-    mavenCentral()
-}
+repositories { mavenCentral() }
 
 dependencies {
     testImplementation(kotlin("test-junit5"))
@@ -18,10 +17,6 @@ dependencies {
     implementation(kotlin("script-runtime"))
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
+tasks.test { useJUnitPlatform() }
 
-tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "11"
-}
+tasks.withType<KotlinCompile>() { kotlinOptions.jvmTarget = "11" }
