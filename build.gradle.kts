@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.4.31"
     id("tech.formatter-kt.formatter") version "0.7.3"
     id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
+    id("jacoco")
 }
 
 group = "me.ilex"
@@ -21,3 +22,11 @@ dependencies {
 tasks.test { useJUnitPlatform() }
 
 tasks.withType<KotlinCompile>() { kotlinOptions.jvmTarget = "11" }
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        csv.isEnabled = true
+        html.isEnabled = false
+    }
+}
