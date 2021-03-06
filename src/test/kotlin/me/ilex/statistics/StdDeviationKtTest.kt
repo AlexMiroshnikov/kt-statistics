@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test
 internal class StdDeviationKtTest {
 
     @Test
-    fun `it returns 9 - if empty array of int is given`() {
+    fun `it returns 0 - if empty array of int is given`() {
         assertEquals(0.0, stdDeviation(emptyArray<Int>()))
     }
     @Test
-    fun `it returns 9 - if empty array of double is given`() {
+    fun `it returns 0 - if empty array of double is given`() {
         assertEquals(0.0, stdDeviation(emptyArray<Double>()))
     }
 
