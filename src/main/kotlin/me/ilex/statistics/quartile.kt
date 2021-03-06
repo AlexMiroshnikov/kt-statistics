@@ -20,10 +20,10 @@ fun quartile(seq: Array<Double>, quartileNum: Quartile): Double {
     seq.sort()
 
     if (quartileNum == Quartile.FIRST) {
-        return median(seq.sliceArray(0 until seq.size/2))
+        return median(seq.sliceArray(0 until seq.size / 2))
     }
 
-    var startIndex = seq.size/2
+    var startIndex = seq.size / 2
 
     if (seq.size % 2 == 1) {
         startIndex++
@@ -32,4 +32,5 @@ fun quartile(seq: Array<Double>, quartileNum: Quartile): Double {
     return median(seq.sliceArray(startIndex until seq.size))
 }
 
-fun quartile(seq: Array<Int>, quartileNum: Quartile): Double = quartile(seq.map { it.toDouble() }.toTypedArray(), quartileNum)
+fun quartile(seq: Array<Int>, quartileNum: Quartile): Double =
+    quartile(seq.map { it.toDouble() }.toTypedArray(), quartileNum)
