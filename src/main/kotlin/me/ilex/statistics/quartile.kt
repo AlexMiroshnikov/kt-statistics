@@ -23,5 +23,11 @@ fun quartile(seq: Array<Int>, quartileNum: Quartile): Double {
         return median(seq.sliceArray(0 until seq.size/2))
     }
 
-    return median(seq.sliceArray(seq.size/2 + 1 until seq.size))
+    var startIndex = seq.size/2
+
+    if (seq.size % 2 == 1) {
+        startIndex++
+    }
+
+    return median(seq.sliceArray(startIndex until seq.size))
 }
