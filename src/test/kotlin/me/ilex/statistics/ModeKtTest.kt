@@ -1,5 +1,6 @@
 package me.ilex.statistics
 
+import kotlin.test.assertEquals
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 
@@ -26,5 +27,10 @@ internal class ModeKtTest {
             arrayOf(6.0, 9.0),
             mode(arrayOf(6.0, 2.0, 6.0, 6.0, 8.0, 9.0, 9.0, 9.0, 0.0))
         )
+    }
+
+    @Test
+    fun `it returns empty array - when empty array is given`() {
+        assertEquals(0, mode(emptyArray<Int>()).size)
     }
 }

@@ -2,7 +2,7 @@ package me.ilex.statistics
 
 fun mode(seq: Array<Double>): Array<Double> {
     if (seq.isEmpty()) {
-        return arrayOf(0.0)
+        return emptyArray()
     }
 
     val modes = mutableMapOf<Double, Int>()
