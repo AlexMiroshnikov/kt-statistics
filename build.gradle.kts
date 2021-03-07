@@ -27,6 +27,26 @@ tasks.jacocoTestReport {
     dependsOn(tasks.test)
     reports {
         csv.isEnabled = true
-        html.isEnabled = false
+        html.isEnabled = true
+    }
+}
+
+tasks.jacocoTestCoverageVerification {
+    dependsOn(tasks.jacocoTestReport)
+    violationRules {
+        rule {
+            limit {
+                counter = "LINE"
+                value = "COVEREDRATIO"
+                minimum = 1.0.toBigDecimal()
+            }
+        }
+        rule {
+            limit {
+                counter = "BRANCH"
+                value = "COVEREDRATIO"
+                minimum = 0.99.toBigDecimal()
+            }
+        }
     }
 }
