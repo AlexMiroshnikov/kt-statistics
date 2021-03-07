@@ -46,6 +46,7 @@ jobs:
         with:
           name: jacoco-report
           path: build/reports/jacoco/test/
+          retention-days: 2
 
       - name: Verify coverage
         run: ./gradlew jacocoTestCoverageVerification
