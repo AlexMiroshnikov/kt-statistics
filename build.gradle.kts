@@ -23,6 +23,8 @@ tasks.test { useJUnitPlatform() }
 
 tasks.withType<KotlinCompile>() { kotlinOptions.jvmTarget = "11" }
 
+tasks.ktlintFormat { dependsOn(tasks.formatKotlin) }
+
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
     reports {
@@ -33,20 +35,23 @@ tasks.jacocoTestReport {
 
 tasks.jacocoTestCoverageVerification {
     dependsOn(tasks.jacocoTestReport)
+
     violationRules {
         rule {
+            element = "CLASS"
             limit {
-                counter = "LINE"
                 value = "COVEREDRATIO"
                 minimum = 1.0.toBigDecimal()
             }
+            excludes = listOf("me.ilex.statistics.ModeKt")
         }
         rule {
+            element = "CLASS"
             limit {
-                counter = "BRANCH"
                 value = "COVEREDRATIO"
-                minimum = 0.99.toBigDecimal()
+                minimum = 0.96.toBigDecimal()
             }
+            includes = listOf("me.ilex.statistics.ModeKt")
         }
     }
 }

@@ -5,18 +5,10 @@ fun mode(seq: Array<Double>): Array<Double> {
         return emptyArray()
     }
 
-    val modes = mutableMapOf<Double, Int>()
+    val modes = seq.groupingBy { it }.fold(0) { count, _ -> count + 1 }
+    val maxMode = modes.values.maxOrNull() ?: return emptyArray()
 
-    seq.forEach {
-        if (!modes.containsKey(it)) {
-            modes[it] = 0
-        }
-        modes[it]?.plus(1)?.let { it1 -> modes[it] = it1 }
-    }
-
-    val maxMode = modes.values.maxOrNull()
-
-    return modes.filter { it.value == maxMode }.keys.toTypedArray()
+    return modes.filter { it.value == maxMode }.keys.toTypedArray().sortedArray()
 }
 
 fun mode(seq: Array<Int>): Array<Int> =
