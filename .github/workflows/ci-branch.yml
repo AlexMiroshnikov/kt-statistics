@@ -18,17 +18,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-    - name: Cache gradle
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-gradle
-      with:
-        path: ~/.gradle/wrapper/dists
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./gradle/wrapper/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+      - name: Cache gradle
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-gradle
+        with:
+          path: ~/.gradle/wrapper/dists
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
       - name: Set up JDK11
         uses: actions/setup-java@v1
