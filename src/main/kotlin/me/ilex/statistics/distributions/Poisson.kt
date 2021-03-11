@@ -11,6 +11,16 @@ class Poisson(private val avgAmountOfSuccesses: Int) {
             E.pow(-avgAmountOfSuccesses) / factorial(amountOfSuccesses).toDouble()
     }
 
+    fun probabilityAtMost(amountOfSuccesses: Int): Double {
+        var result = 0.0
+
+        for (i in 0..amountOfSuccesses) {
+            result += probabilityExact(i)
+        }
+
+        return result
+    }
+
     private fun factorial(num: Int): BigInteger {
         var result = BigInteger.ONE
 
