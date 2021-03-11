@@ -21,4 +21,10 @@ internal class BinomialTest {
         val d = Binomial(10, 0.5)
         assertEquals(0.623046875.toString(), "%.9f".format(d.probabilityAtMost(5)))
     }
+
+    @Test
+    fun `when special conditions are given - probability of getting at least N successes is correct`() {
+        val d = Binomial(6, 1 - (1 / (1 + 1.09)))
+        assertEquals(0.696.toString(), "%.3f".format(d.probabilityAtLeast(3)))
+    }
 }
