@@ -4,11 +4,11 @@ import java.math.BigInteger
 import kotlin.math.E
 import kotlin.math.pow
 
-class Poisson(private val avgAmountOfSuccesses: Int) {
+class Poisson(private val avgAmountOfSuccesses: Double) {
 
     fun probabilityExact(amountOfSuccesses: Int): Double {
-        return avgAmountOfSuccesses.toDouble().pow(amountOfSuccesses) *
-            E.pow(-avgAmountOfSuccesses) / factorial(amountOfSuccesses).toDouble()
+        return avgAmountOfSuccesses.pow(amountOfSuccesses) * E.pow(-avgAmountOfSuccesses) /
+            factorial(amountOfSuccesses).toDouble()
     }
 
     fun probabilityAtMost(amountOfSuccesses: Int): Double {
