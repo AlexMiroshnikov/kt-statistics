@@ -3,12 +3,9 @@ package me.ilex.statistics.distributions
 import java.math.BigInteger
 import kotlin.math.pow
 
-class Binomial(private val amountOfTrials: Int, private val successProbability: Double) {
-    fun probabilityExact(amountOfSuccesses: Int): Double {
-        val nxCombinations =
-            factorial(amountOfTrials).toDouble() /
-                (factorial(amountOfSuccesses) * factorial(amountOfTrials - amountOfSuccesses))
-                    .toDouble()
+open class Binomial(protected val amountOfTrials: Int, protected val successProbability: Double) {
+    open fun probabilityExact(amountOfSuccesses: Int): Double {
+        val nxCombinations = calcNXCombinations(amountOfTrials, amountOfSuccesses)
 
         return nxCombinations * successProbability.pow(amountOfSuccesses.toDouble()) *
             (1 - successProbability).pow((amountOfTrials - amountOfSuccesses).toDouble())
@@ -32,6 +29,10 @@ class Binomial(private val amountOfTrials: Int, private val successProbability: 
         }
 
         return result
+    }
+
+    protected open fun calcNXCombinations(n: Int, x: Int): Double {
+        return factorial(n).toDouble() / (factorial(x) * factorial(n - x)).toDouble()
     }
 
     private fun factorial(num: Int): BigInteger {
