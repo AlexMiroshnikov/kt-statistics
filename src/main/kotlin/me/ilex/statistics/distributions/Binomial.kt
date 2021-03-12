@@ -1,7 +1,7 @@
 package me.ilex.statistics.distributions
 
-import java.math.BigInteger
 import kotlin.math.pow
+import me.ilex.statistics.util.factorial
 
 open class Binomial(protected val amountOfTrials: Int, protected val successProbability: Double) {
     open fun probabilityExact(amountOfSuccesses: Int): Double {
@@ -33,17 +33,5 @@ open class Binomial(protected val amountOfTrials: Int, protected val successProb
 
     protected open fun calcNXCombinations(n: Int, x: Int): Double {
         return factorial(n).toDouble() / (factorial(x) * factorial(n - x)).toDouble()
-    }
-
-    private fun factorial(num: Int): BigInteger {
-        var result = BigInteger.ONE
-
-        if (num >= 2) {
-            for (i in 2..num) {
-                result *= i.toBigInteger()
-            }
-        }
-
-        return result
     }
 }
