@@ -17,4 +17,14 @@ internal class NormalTest {
 
         assertEquals(n1.probabilityDensity(x), n2.probabilityDensity(x))
     }
+
+    @Test
+    fun `cumulative probability is calculated properly`() {
+        val d = Normal(20.0, 2.0)
+        assertEquals("0.401", "%.3f".format(d.cumulativeProbability(19.5)))
+        assertEquals(
+            "0.341",
+            "%.3f".format(d.cumulativeProbability(22.0) - d.cumulativeProbability(20.0))
+        )
+    }
 }
