@@ -37,7 +37,7 @@ class Erf {
             return denominators[n]!!
         }
 
-        fun calc(x: Double, approx: Int = 5): Double {
+        fun calc(x: Double, approx: Int = 11): Double {
             return 2 / sqrt(PI) * tailor(x, approx)
         }
     }
