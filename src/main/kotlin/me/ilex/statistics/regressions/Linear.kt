@@ -1,6 +1,5 @@
 package me.ilex.statistics.regressions
 
-import java.math.BigInteger
 import kotlin.math.pow
 import me.ilex.statistics.exceptions.InvalidArgumentException
 import me.ilex.statistics.mean
@@ -23,9 +22,6 @@ class Linear {
         b = calcB()
         a = calcA()
     }
-
-    constructor(x: Array<BigInteger>, y: Array<BigInteger>) :
-        this(x.map { it.toDouble() }.toTypedArray(), y.map { it.toDouble() }.toTypedArray())
 
     constructor(x: Array<Int>, y: Array<Int>) :
         this(x.map { it.toDouble() }.toTypedArray(), y.map { it.toDouble() }.toTypedArray())
