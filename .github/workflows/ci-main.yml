@@ -50,6 +50,9 @@ jobs:
 
       - name: Commit the badge (if it changed)
         run: |
+          git fetch
+          git branch
+          git branch -r
           git checkout $GITHUB_HEAD_REF
           GIT_STATUS_PORCELAIN=`git status --porcelain`
           echo "GIT_STATUS_PORCELAIN: $GIT_STATUS_PORCELAIN"
