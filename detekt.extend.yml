@@ -5,4 +5,4 @@ style:
   MaxLineLength:
     maxLineLength: 180
   ReturnCount:
-    max: 2
+    max: 4

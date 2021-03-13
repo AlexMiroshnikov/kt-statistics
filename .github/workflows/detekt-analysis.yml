@@ -86,6 +86,7 @@ jobs:
         --input ${{ github.workspace }} \
         --report sarif:${{ github.workspace }}/detekt.sarif.json \
         --language-version 1.4 \
+        --jvm-target 11 \
         --build-upon-default-config \
         -c ${{ github.workspace }}/detekt.extend.yml
 
