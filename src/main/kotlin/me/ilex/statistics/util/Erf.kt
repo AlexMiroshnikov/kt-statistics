@@ -3,9 +3,12 @@ package me.ilex.statistics.util
 import kotlin.math.PI
 import kotlin.math.pow
 import kotlin.math.sqrt
+import me.ilex.statistics.exceptions.InvalidArgumentException
 
 class Erf {
     companion object {
+        private const val MIN_APPROX = 17
+
         private var denominators = mutableMapOf<Int, Double>()
 
         private fun tailor(x: Double, approx: Int): Double {
@@ -37,7 +40,14 @@ class Erf {
             return denominators[n]!!
         }
 
-        fun calc(x: Double, approx: Int = 17): Double {
+        fun calc(x: Double, approx: Int = MIN_APPROX): Double {
+            if (approx < MIN_APPROX) {
+                throw InvalidArgumentException(
+                    "approx $approx was given, but it must be not less than $MIN_APPROX, " +
+                        "otherwise calculation precision is too low"
+                )
+            }
+
             return 2 / sqrt(PI) * tailor(x, approx)
         }
     }
