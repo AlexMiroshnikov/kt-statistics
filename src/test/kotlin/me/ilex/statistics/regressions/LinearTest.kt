@@ -43,4 +43,11 @@ internal class LinearTest {
         assertThrows<InvalidArgumentException> { Linear(arrayOf(1), arrayOf()) }
         assertThrows<InvalidArgumentException> { Linear(arrayOf(), arrayOf(1)) }
     }
+
+    @Test
+    fun `it calculates expected y basing on given x`() {
+        val r = Linear(arrayOf(Pair(1.0, 1.0)))
+        val x = 2.0
+        assertEquals(x, r.y(x))
+    }
 }

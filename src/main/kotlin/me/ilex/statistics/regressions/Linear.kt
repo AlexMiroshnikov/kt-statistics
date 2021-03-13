@@ -33,12 +33,26 @@ class Linear {
     constructor(xy: Array<Pair<Double, Double>>) :
         this(xy.map { it.first }.toTypedArray(), xy.map { it.second }.toTypedArray())
 
+    fun y(x: Double): Double {
+        return a + b * x
+    }
+
+    fun y(x: Int): Double {
+        return y(x.toDouble())
+    }
+
     fun summary(): Nothing = throw NotImplementedError()
 
     private fun calcB(): Double {
         val sumX = x.sum()
+        val denominator = (x.size * x.map { it.pow(2) }.sum() - sumX.pow(2))
+
+        if (denominator == 0.0) {
+            return 1.0
+        }
+
         return ((x.size * (x.mapIndexed { index, d -> d * y[index] }).sum()) - sumX * y.sum()) /
-            (x.size * x.map { it.pow(2) }.sum() - sumX.pow(2))
+            denominator
     }
 
     private fun calcA(): Double {
