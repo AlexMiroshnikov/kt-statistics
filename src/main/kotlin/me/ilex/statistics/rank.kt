@@ -3,8 +3,7 @@ package me.ilex.statistics
 import java.math.BigInteger
 
 fun rank(seq: Array<Double>): Array<BigInteger> {
-    val sortedSeq = seq.clone()
-    sortedSeq.sort()
+    val sortedSeq = seq.sorted().toTypedArray()
     var rank = 1.toBigInteger()
     var min = sortedSeq.first()
     val ranks = mutableMapOf(min to rank)
@@ -20,3 +19,5 @@ fun rank(seq: Array<Double>): Array<BigInteger> {
 
     return seq.map { ranks[it]!! }.toTypedArray()
 }
+
+fun rank(seq: Array<Int>): Array<BigInteger> = rank(seq.map { it.toDouble() }.toTypedArray())
