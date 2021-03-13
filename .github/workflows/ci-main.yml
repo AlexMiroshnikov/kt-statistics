@@ -53,6 +53,10 @@ jobs:
           git branch
           git log | head -n 20
           git status
+          echo "ENVS:"
+          echo "GITHUB_REF: $GITHUB_REF"
+          echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
+          echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
           if [[ `git status --porcelain` ]]; then
             git config user.name 'AlexMiroshnikov'
             git add -A
