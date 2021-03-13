@@ -1,0 +1,8 @@
+formatting:
+  active: false
+
+style:
+  MaxLineLength:
+    maxLineLength: 180
+  ReturnCount:
+    max: 2

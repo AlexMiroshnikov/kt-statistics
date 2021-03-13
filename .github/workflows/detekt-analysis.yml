@@ -82,7 +82,13 @@ jobs:
     - name: Run Detekt
       continue-on-error: true
       run: |
-        detekt --input ${{ github.workspace }} --report sarif:${{ github.workspace }}/detekt.sarif.json
+        detekt \
+        --input ${{ github.workspace }} \
+        --report sarif:${{ github.workspace }}/detekt.sarif.json \
+        --language-version 1.4 \
+        --jvm-target JVM_11 \
+        --build-upon-default-config \
+        -c ${{ github.workspace }}/detekt.extend.yml
 
     # Modifies the SARIF output produced by Detekt so that absolute URIs are relative
     # This is so we can easily map results onto their source files
