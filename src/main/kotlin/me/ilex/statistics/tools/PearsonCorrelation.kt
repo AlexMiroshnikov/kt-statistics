@@ -9,7 +9,7 @@ class PearsonCorrelation {
     private var x: Array<Double>
     private var y: Array<Double>
 
-    private lateinit var means: Pair<Double, Double>
+    private var means: Pair<Double, Double>
 
     constructor(x: Array<Double>, y: Array<Double>) {
         if (x.size != y.size)
@@ -19,6 +19,8 @@ class PearsonCorrelation {
 
         this.x = x
         this.y = y
+
+        means = Pair(mean(x), mean(y))
     }
 
     constructor(x: Array<Int>, y: Array<Int>) :
@@ -35,7 +37,7 @@ class PearsonCorrelation {
             return result
         }
 
-        val (xMean, yMean) = getMeans()
+        val (xMean, yMean) = means
 
         for (i in x.indices) {
             result += (x[i] - xMean) * (y[i] - yMean)
@@ -47,13 +49,12 @@ class PearsonCorrelation {
     }
 
     fun correlationCoef(): Double {
-        return covariance() / (stdDeviation(x) * stdDeviation(y))
-    }
+        val denominator = stdDeviation(x) * stdDeviation(y)
 
-    private fun getMeans(): Pair<Double, Double> {
-        if (!this::means.isInitialized) {
-            means = Pair(mean(x), mean(y))
+        if (denominator == 0.0) {
+            return 1.0
         }
-        return means
+
+        return covariance() / denominator
     }
 }
