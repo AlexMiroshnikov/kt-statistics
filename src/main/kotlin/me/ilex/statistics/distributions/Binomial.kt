@@ -14,9 +14,7 @@ open class Binomial(protected val amountOfTrials: Int, protected val successProb
     fun probabilityAtLeast(amountOfSuccesses: Int): Double {
         var result = 0.0
 
-        for (i in amountOfSuccesses..amountOfTrials) {
-            result += probabilityExact(i)
-        }
+        (amountOfSuccesses..amountOfTrials).forEach { i -> result += probabilityExact(i) }
 
         return result
     }
@@ -24,9 +22,7 @@ open class Binomial(protected val amountOfTrials: Int, protected val successProb
     fun probabilityAtMost(amountOfSuccesses: Int): Double {
         var result = 0.0
 
-        for (i in 0..amountOfSuccesses) {
-            result += probabilityExact(i)
-        }
+        (0..amountOfSuccesses).forEach { i -> result += probabilityExact(i) }
 
         return result
     }
