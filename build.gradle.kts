@@ -19,6 +19,8 @@ dependencies {
     implementation(kotlin("script-runtime"))
 }
 
+jacoco { toolVersion = "0.8.6" }
+
 tasks.test { useJUnitPlatform() }
 
 tasks.withType<KotlinCompile>() { kotlinOptions.jvmTarget = "11" }
