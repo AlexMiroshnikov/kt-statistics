@@ -11,8 +11,8 @@ internal class LinearTest {
         val X = arrayOf(1, 2, 3, 4, 5)
         val Y = arrayOf(2, 1, 4, 3, 5)
 
-        val a = 0.5999999999999996
-        val b = 0.8
+        const val a = 0.5999999999999996
+        const val b = 0.8
     }
 
     @Test
