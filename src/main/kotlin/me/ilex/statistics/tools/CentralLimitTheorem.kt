@@ -8,4 +8,8 @@ class CentralLimitTheorem(private val expectation: Double, private val stdDeviat
         val d = Normal.makeThroughDeviation(n * expectation, sqrt(n) * stdDeviation)
         return d.cumulativeProbability(x)
     }
+
+    fun predictionInterval(z: Double): Pair<Double, Double> {
+        return Pair(expectation - z * stdDeviation, expectation + z * stdDeviation)
+    }
 }
