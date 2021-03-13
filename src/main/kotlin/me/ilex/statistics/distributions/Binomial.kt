@@ -4,6 +4,7 @@ import kotlin.math.pow
 import me.ilex.statistics.util.factorial
 
 open class Binomial(protected val amountOfTrials: Int, protected val successProbability: Double) {
+
     open fun probabilityExact(amountOfSuccesses: Int): Double {
         val nxCombinations = calcNXCombinations(amountOfTrials, amountOfSuccesses)
 
