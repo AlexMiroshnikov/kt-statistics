@@ -19,6 +19,8 @@ dependencies {
     implementation(kotlin("script-runtime"))
 }
 
+jacoco { toolVersion = "0.8.6" }
+
 tasks.test { useJUnitPlatform() }
 
 tasks.withType<KotlinCompile>() { kotlinOptions.jvmTarget = "11" }
@@ -43,7 +45,7 @@ tasks.jacocoTestCoverageVerification {
                 value = "COVEREDRATIO"
                 minimum = 1.0.toBigDecimal()
             }
-            excludes = listOf("me.ilex.statistics.ModeKt")
+            excludes = listOf("me.ilex.statistics.ModeKt", "me.ilex.statistics.util.Erf")
         }
         rule {
             element = "CLASS"
@@ -52,6 +54,15 @@ tasks.jacocoTestCoverageVerification {
                 minimum = 0.96.toBigDecimal()
             }
             includes = listOf("me.ilex.statistics.ModeKt")
+        }
+        rule {
+            element = "CLASS"
+            limit {
+                counter = "LINE"
+                value = "MISSEDCOUNT"
+                maximum = 1.0.toBigDecimal()
+            }
+            includes = listOf("me.ilex.statistics.util.Erf")
         }
     }
 }
