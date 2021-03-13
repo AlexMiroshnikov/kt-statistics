@@ -16,8 +16,9 @@ on:
   # Triggers the workflow on push or pull request events but only for default and protected branches
   push:
 
-  pull_request:
-    branches: [ main ]
+#  Tmp disable on pull_request
+#  pull_request:
+#    branches: [ main ]
 
   schedule:
      - cron: '40 7 * * *'
