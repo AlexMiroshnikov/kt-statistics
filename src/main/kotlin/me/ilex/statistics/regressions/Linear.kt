@@ -30,6 +30,9 @@ class Linear {
     constructor(x: Array<Int>, y: Array<Int>) :
         this(x.map { it.toDouble() }.toTypedArray(), y.map { it.toDouble() }.toTypedArray())
 
+    constructor(xy: Array<Pair<Double, Double>>) :
+        this(xy.map { it.first }.toTypedArray(), xy.map { it.second }.toTypedArray())
+
     fun summary(): Nothing = throw NotImplementedError()
 
     private fun calcB(): Double {

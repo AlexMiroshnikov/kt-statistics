@@ -7,11 +7,29 @@ import org.junit.jupiter.api.assertThrows
 
 internal class LinearTest {
 
+    private companion object {
+        val X = arrayOf(1, 2, 3, 4, 5)
+        val Y = arrayOf(2, 1, 4, 3, 5)
+
+        val a = 0.5999999999999996
+        val b = 0.8
+    }
+
     @Test
-    fun `it calculates a and b correctly`() {
-        val r = Linear(arrayOf(1, 2, 3, 4, 5), arrayOf(2, 1, 4, 3, 5))
-        assertEquals(0.8, r.b)
-        assertEquals(0.5999999999999996, r.a)
+    fun `it calculates a and b correctly - when constructed through separate arrays`() {
+        val r = Linear(X, Y)
+        assertEquals(b, r.b)
+        assertEquals(a, r.a)
+    }
+
+    @Test
+    fun `it calculates a and b correctly - when constructed through array of pairs`() {
+        val r =
+            Linear(
+                X.mapIndexed { index, i -> Pair(i.toDouble(), Y[index].toDouble()) }.toTypedArray()
+            )
+        assertEquals(b, r.b)
+        assertEquals(a, r.a)
     }
 
     @Test
