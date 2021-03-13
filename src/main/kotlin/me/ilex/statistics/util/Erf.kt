@@ -15,19 +15,20 @@ class Erf {
             var result = 0.0
             var member: Double
 
-            for (n in 0..approx) {
-                member = x.pow(2 * n + 1)
+            (0..approx)
+                .forEach { n ->
+                    member = x.pow(2 * n + 1)
 
-                if (n > 0) {
-                    member /= denominator(n)
+                    if (n > 0) {
+                        member /= denominator(n)
 
-                    if (n % 2 == 1) {
-                        member = -member
+                        if (n % 2 == 1) {
+                            member = -member
+                        }
                     }
-                }
 
-                result += member
-            }
+                    result += member
+                }
 
             return result
         }

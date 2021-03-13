@@ -11,9 +11,7 @@ fun factorial(num: Int): BigInteger {
     var result = BigInteger.ONE
 
     if (num >= 2) {
-        for (i in 2..num) {
-            result *= i.toBigInteger()
-        }
+        (2..num).forEach { i -> result *= i.toBigInteger() }
     }
 
     return result
