@@ -47,7 +47,8 @@ internal class LinearTest {
     @Test
     fun `it calculates expected y basing on given x`() {
         val r = Linear(arrayOf(Pair(1.0, 1.0)))
-        val x = 2.0
-        assertEquals(x, r.y(x))
+        val expected = 2.0
+        assertEquals(expected, r.y(2.0))
+        assertEquals(expected, r.y(2))
     }
 }
