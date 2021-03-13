@@ -1,5 +1,6 @@
 package me.ilex.statistics.tools
 
+import java.math.BigInteger
 import me.ilex.statistics.exceptions.InvalidArgumentException
 import me.ilex.statistics.mean
 import me.ilex.statistics.stdDeviation
@@ -27,6 +28,9 @@ class PearsonCorrelation {
     constructor(x: Array<Double>, y: Array<Int>) : this(x, y.map { it.toDouble() }.toTypedArray())
 
     constructor(x: Array<Int>, y: Array<Double>) : this(x.map { it.toDouble() }.toTypedArray(), y)
+
+    constructor(x: Array<BigInteger>, y: Array<BigInteger>) :
+        this(x.map { it.toDouble() }.toTypedArray(), y.map { it.toDouble() }.toTypedArray())
 
     fun covariance(): Double {
         var result = 0.0
