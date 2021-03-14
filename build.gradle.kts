@@ -54,12 +54,7 @@ tasks.jacocoTestCoverageVerification {
                 value = "COVEREDRATIO"
                 minimum = 1.0.toBigDecimal()
             }
-            excludes =
-                listOf(
-                    "me.ilex.statistics.ModeKt",
-                    "me.ilex.statistics.util.Erf",
-                    "me.ilex.statistics.tools.Spearman"
-                )
+            excludes = listOf("me.ilex.statistics.ModeKt")
         }
         rule {
             element = "CLASS"
@@ -68,15 +63,6 @@ tasks.jacocoTestCoverageVerification {
                 minimum = 0.95.toBigDecimal()
             }
             includes = listOf("me.ilex.statistics.ModeKt")
-        }
-        rule {
-            element = "CLASS"
-            limit {
-                counter = "LINE"
-                value = "MISSEDCOUNT"
-                maximum = 1.0.toBigDecimal()
-            }
-            includes = listOf("me.ilex.statistics.util.Erf", "me.ilex.statistics.tools.Spearman")
         }
     }
 }
