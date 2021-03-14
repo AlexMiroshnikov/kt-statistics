@@ -2,7 +2,7 @@ package me.ilex.statistics
 
 import me.ilex.statistics.exceptions.InvalidArgumentException
 
-fun weightedMean(seq: Array<Double>, weights: Array<Double>): Double {
+fun weightedMean(seq: DoubleArray, weights: DoubleArray): Double {
     if (seq.size != weights.size) {
         throw InvalidArgumentException(
             "Size of sequence ${seq.size} does not equal size of weights ${weights.size}"
@@ -20,14 +20,14 @@ fun weightedMean(seq: Array<Double>, weights: Array<Double>): Double {
     return weightedVal / weights.sum()
 }
 
-fun weightedMean(seq: Array<Int>, weights: Array<Double>): Double =
-    weightedMean(seq.map { it.toDouble() }.toTypedArray(), weights)
+fun weightedMean(seq: IntArray, weights: DoubleArray): Double =
+    weightedMean(seq.map { it.toDouble() }.toDoubleArray(), weights)
 
-fun weightedMean(seq: Array<Int>, weights: Array<Int>): Double =
+fun weightedMean(seq: IntArray, weights: IntArray): Double =
     weightedMean(
-        seq.map { it.toDouble() }.toTypedArray(),
-        weights.map { it.toDouble() }.toTypedArray()
+        seq.map { it.toDouble() }.toDoubleArray(),
+        weights.map { it.toDouble() }.toDoubleArray()
     )
 
-fun weightedMean(seq: Array<Double>, weights: Array<Int>): Double =
-    weightedMean(seq, weights.map { it.toDouble() }.toTypedArray())
+fun weightedMean(seq: DoubleArray, weights: IntArray): Double =
+    weightedMean(seq, weights.map { it.toDouble() }.toDoubleArray())

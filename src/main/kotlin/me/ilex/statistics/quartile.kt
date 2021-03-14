@@ -4,7 +4,7 @@ enum class Quartile {
     FIRST, SECOND, THIRD
 }
 
-fun quartile(seq: Array<Double>, quartileNum: Quartile): Double {
+fun quartile(seq: DoubleArray, quartileNum: Quartile): Double {
     if (seq.isEmpty()) {
         return 0.0
     }
@@ -32,5 +32,5 @@ fun quartile(seq: Array<Double>, quartileNum: Quartile): Double {
     return median(seq.sliceArray(startIndex until seq.size))
 }
 
-fun quartile(seq: Array<Int>, quartileNum: Quartile): Double =
-    quartile(seq.map { it.toDouble() }.toTypedArray(), quartileNum)
+fun quartile(seq: IntArray, quartileNum: Quartile): Double =
+    quartile(seq.map { it.toDouble() }.toDoubleArray(), quartileNum)

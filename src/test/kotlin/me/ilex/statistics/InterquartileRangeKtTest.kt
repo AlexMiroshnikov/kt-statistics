@@ -7,12 +7,12 @@ internal class InterquartileRangeKtTest {
 
     @Test
     fun `it returns 0 - if empty array of int is given`() {
-        assertEquals(0.0, interquartileRange(emptyArray<Int>()))
+        assertEquals(0.0, interquartileRange(intArrayOf()))
     }
 
     @Test
     fun `it returns 0 - if empty array of double is given`() {
-        assertEquals(0.0, interquartileRange(emptyArray<Double>()))
+        assertEquals(0.0, interquartileRange(doubleArrayOf()))
     }
 
     @Test
@@ -20,12 +20,12 @@ internal class InterquartileRangeKtTest {
         assertEquals(
             9.0,
             interquartileRange(
-                emptyArray<Int>().plus(Array(5) { 6 })
-                    .plus(Array(4) { 12 })
-                    .plus(Array(3) { 8 })
-                    .plus(Array(2) { 10 })
-                    .plus(Array(1) { 20 })
-                    .plus(Array(5) { 16 })
+                intArrayOf().plus(IntArray(5) { 6 })
+                    .plus(IntArray(4) { 12 })
+                    .plus(IntArray(3) { 8 })
+                    .plus(IntArray(2) { 10 })
+                    .plus(IntArray(1) { 20 })
+                    .plus(IntArray(5) { 16 })
             )
         )
     }
@@ -35,12 +35,12 @@ internal class InterquartileRangeKtTest {
         assertEquals(
             9.0,
             interquartileRange(
-                emptyArray<Double>().plus(Array(5) { 6.0 })
-                    .plus(Array(4) { 12.0 })
-                    .plus(Array(3) { 8.0 })
-                    .plus(Array(2) { 10.0 })
-                    .plus(Array(1) { 20.0 })
-                    .plus(Array(5) { 16.0 })
+                doubleArrayOf().plus(DoubleArray(5) { 6.0 })
+                    .plus(DoubleArray(4) { 12.0 })
+                    .plus(DoubleArray(3) { 8.0 })
+                    .plus(DoubleArray(2) { 10.0 })
+                    .plus(DoubleArray(1) { 20.0 })
+                    .plus(DoubleArray(5) { 16.0 })
             )
         )
     }

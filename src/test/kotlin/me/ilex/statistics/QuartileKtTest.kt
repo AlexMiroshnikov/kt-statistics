@@ -6,28 +6,28 @@ import org.junit.jupiter.api.Test
 internal class QuartileKtTest {
 
     companion object {
-        val SEQ_INT_SINGLE = arrayOf(1)
-        val SEQ_INT_ODD = arrayOf(3, 7, 8, 5, 12, 14, 21, 13)
-        val SEQ_INT_EVEN = SEQ_INT_ODD.plusElement(18)
+        val SEQ_INT_SINGLE = intArrayOf(1)
+        val SEQ_INT_ODD = intArrayOf(3, 7, 8, 5, 12, 14, 21, 13)
+        val SEQ_INT_EVEN = SEQ_INT_ODD.plus(18)
 
-        val SEQ_DOUBLE_SINGLE = arrayOf(1.0)
-        val SEQ_DOUBLE_ODD = arrayOf(3.0, 7.0, 8.0, 5.0, 12.0, 14.0, 21.0, 13.0)
-        val SEQ_DOUBLE_EVEN = SEQ_DOUBLE_ODD.plusElement(18.0)
+        val SEQ_DOUBLE_SINGLE = doubleArrayOf(1.0)
+        val SEQ_DOUBLE_ODD = doubleArrayOf(3.0, 7.0, 8.0, 5.0, 12.0, 14.0, 21.0, 13.0)
+        val SEQ_DOUBLE_EVEN = SEQ_DOUBLE_ODD.plus(18.0)
     }
 
     @Test
     fun `it returns 0 as 1st quartile - if empty array of int is passed`() {
-        assertEquals(0.0, quartile(arrayOf<Int>(), Quartile.FIRST))
+        assertEquals(0.0, quartile(intArrayOf(), Quartile.FIRST))
     }
 
     @Test
     fun `it returns 0 as 2nd quartile - if empty array of int is passed`() {
-        assertEquals(0.0, quartile(arrayOf<Int>(), Quartile.SECOND))
+        assertEquals(0.0, quartile(intArrayOf(), Quartile.SECOND))
     }
 
     @Test
     fun `it returns 0 as 3rd quartile - if empty array of int is passed`() {
-        assertEquals(0.0, quartile(arrayOf<Int>(), Quartile.THIRD))
+        assertEquals(0.0, quartile(intArrayOf(), Quartile.THIRD))
     }
 
     @Test
@@ -77,17 +77,17 @@ internal class QuartileKtTest {
 
     @Test
     fun `it returns 0 as 1st quartile - if empty array of double is passed`() {
-        assertEquals(0.0, quartile(arrayOf<Double>(), Quartile.FIRST))
+        assertEquals(0.0, quartile(doubleArrayOf(), Quartile.FIRST))
     }
 
     @Test
     fun `it returns 0 as 2nd quartile - if empty array of double is passed`() {
-        assertEquals(0.0, quartile(arrayOf<Double>(), Quartile.SECOND))
+        assertEquals(0.0, quartile(doubleArrayOf(), Quartile.SECOND))
     }
 
     @Test
     fun `it returns 0 as 3rd quartile - if empty array of double is passed`() {
-        assertEquals(0.0, quartile(arrayOf<Double>(), Quartile.THIRD))
+        assertEquals(0.0, quartile(doubleArrayOf(), Quartile.THIRD))
     }
 
     @Test

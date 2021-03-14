@@ -1,9 +1,9 @@
 package me.ilex.statistics
 
-fun interquartileRange(seq: Array<Double>): Double {
+fun interquartileRange(seq: DoubleArray): Double {
     return quartile(seq, Quartile.THIRD) - quartile(seq, Quartile.FIRST)
 }
 
-fun interquartileRange(seq: Array<Int>): Double {
-    return interquartileRange(seq.map { it.toDouble() }.toTypedArray())
+fun interquartileRange(seq: IntArray): Double {
+    return interquartileRange(seq.map { it.toDouble() }.toDoubleArray())
 }

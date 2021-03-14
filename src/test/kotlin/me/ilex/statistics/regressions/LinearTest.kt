@@ -8,8 +8,8 @@ import org.junit.jupiter.api.assertThrows
 internal class LinearTest {
 
     private companion object {
-        val X = arrayOf(1, 2, 3, 4, 5)
-        val Y = arrayOf(2, 1, 4, 3, 5)
+        val X = intArrayOf(1, 2, 3, 4, 5)
+        val Y = intArrayOf(2, 1, 4, 3, 5)
 
         const val a = 0.5999999999999996
         const val b = 0.8
@@ -34,14 +34,14 @@ internal class LinearTest {
 
     @Test
     fun `summary throws an exception`() {
-        val r = Linear(arrayOf(1), arrayOf(1))
+        val r = Linear(intArrayOf(1), intArrayOf(1))
         assertThrows<NotImplementedError> { r.summary() }
     }
 
     @Test
     fun `constructor throws an exception - when size of x does not equal size of y`() {
-        assertThrows<InvalidArgumentException> { Linear(arrayOf(1), arrayOf()) }
-        assertThrows<InvalidArgumentException> { Linear(arrayOf(), arrayOf(1)) }
+        assertThrows<InvalidArgumentException> { Linear(intArrayOf(1), intArrayOf()) }
+        assertThrows<InvalidArgumentException> { Linear(intArrayOf(), intArrayOf(1)) }
     }
 
     @Test

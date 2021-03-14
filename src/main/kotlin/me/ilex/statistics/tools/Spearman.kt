@@ -4,7 +4,7 @@ import me.ilex.statistics.rank
 
 class Spearman {
     companion object {
-        fun rankCorrelationCoef(x: Array<Double>, y: Array<Double>): Double {
+        fun rankCorrelationCoef(x: DoubleArray, y: DoubleArray): Double {
             return PearsonCorrelation(rank(x), rank(y)).correlationCoef()
         }
     }

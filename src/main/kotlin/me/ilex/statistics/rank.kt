@@ -2,7 +2,7 @@ package me.ilex.statistics
 
 import java.math.BigInteger
 
-fun rank(seq: Array<Double>): Array<BigInteger> {
+fun rank(seq: DoubleArray): Array<BigInteger> {
     val sortedSeq = seq.sorted().toTypedArray()
     var rank = 1.toBigInteger()
     var min = sortedSeq.first()
@@ -20,4 +20,4 @@ fun rank(seq: Array<Double>): Array<BigInteger> {
     return seq.map { ranks[it]!! }.toTypedArray()
 }
 
-fun rank(seq: Array<Int>): Array<BigInteger> = rank(seq.map { it.toDouble() }.toTypedArray())
+fun rank(seq: IntArray): Array<BigInteger> = rank(seq.map { it.toDouble() }.toDoubleArray())
