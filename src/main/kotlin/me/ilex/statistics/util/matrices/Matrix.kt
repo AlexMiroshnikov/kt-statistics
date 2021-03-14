@@ -131,6 +131,8 @@ class Matrix {
 
     fun invert(): Matrix {
         validateIfIsSquare()
+        val t = transpose()
+
         return makeFromRows(emptyArray<DoubleArray>())
     }
 
@@ -164,6 +166,17 @@ class Matrix {
             }
 
         return result
+    }
+
+    fun getMinor(i: Int, j: Int): Matrix {
+        val newRows = rows.filterIndexed { index, _ ->
+            index != i
+        }.map {
+            it.filterIndexed { index, d ->
+                index != j
+            }.toDoubleArray()
+        }.toTypedArray()
+        return makeFromRows(newRows)
     }
 
     fun println() {
