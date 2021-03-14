@@ -116,6 +116,10 @@ class Matrix {
         return cols
     }
 
+    fun dimensions(): Pair<Int, Int> {
+        return Pair(rows.size, rows.first().size)
+    }
+
     fun println() {
         println(rows.joinToString("\n") { it.joinToString(" ") })
     }
