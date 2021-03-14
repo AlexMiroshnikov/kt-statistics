@@ -1,6 +1,7 @@
 package me.ilex.statistics.util.matrices
 
 import me.ilex.statistics.exceptions.InvalidArgumentException
+import me.ilex.statistics.util.matrices.exceptions.MatrixLogicException
 
 class Matrix {
     private var rows: Array<DoubleArray>
@@ -47,6 +48,19 @@ class Matrix {
                     )
                 }
             }
+        }
+
+        private var determinantCache = mutableMapOf<String, Double>()
+
+        // @TODO Eliminate memory leak
+        private fun getCachedDeterminant(m: Matrix): Double {
+            val key = m.toSingleLine()
+
+            if (!determinantCache.containsKey(key)) {
+                determinantCache[key] = m.determinant()
+            }
+
+            return determinantCache[key]!!
         }
     }
 
@@ -145,7 +159,8 @@ class Matrix {
                     doubles
                         .mapIndexed { colIndex, _ ->
                             val m = t.getMinor(rowIndex, colIndex)
-                            var minorD = m.determinant()
+                            //                            var minorD = m.determinant()
+                            var minorD = getCachedDeterminant(m)
 
                             if ((rowIndex + 1 + colIndex + 1) % 2 != 0 && minorD != 0.0) {
                                 minorD = -minorD
@@ -174,7 +189,8 @@ class Matrix {
         rows[0]
             .forEachIndexed { colIndex, value ->
                 m = getMinor(0, colIndex)
-                d = value * m.determinant()
+                //                d = value * m.determinant()
+                d = value * getCachedDeterminant(m)
 
                 if (colIndex % 2 != 0) {
                     d = -d
@@ -211,7 +227,7 @@ class Matrix {
     private fun validateIfIsSquare() {
         if (!isSquare()) {
             val (d1, d2) = dimensions()
-            throw Exception(
+            throw MatrixLogicException(
                 "Only square matrices can be inverted, while actual dimensions are ${d1}x$d2"
             )
         }
