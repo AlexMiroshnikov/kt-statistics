@@ -36,8 +36,11 @@ internal class MatrixTest {
     @Test
     fun `transpose - returns expected result`() {
         val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4), intArrayOf(5, 6)))
+        println("Original matrix")
+        m.println()
 
         val t = m.transpose()
+//        t.println()
 
         assertEquals("1.0 3.0 5.0 2.0 4.0 6.0", t.toSingleLine())
     }

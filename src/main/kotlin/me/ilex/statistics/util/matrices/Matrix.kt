@@ -25,13 +25,23 @@ class Matrix {
 
         fun makeFromCols(cols: Array<DoubleArray>): Matrix {
             //            validateSize(cols)
-            val rows = Array(cols.size) { DoubleArray(cols.first().size) }
-            cols.forEachIndexed { colIndex, colValues ->
-                colValues.forEachIndexed { rowIndex, d ->
-                    rows[rowIndex][colIndex] = d
+//            println("Passed cols:")
+//            cols.map {
+//                println(it.toList())
+//            }
+//            println("New matrix: ${cols.size}x${cols.first().size}")
+            val newRows = Array(cols.size) { DoubleArray(cols.first().size) }
+//            println("Empty new rows:")
+//            newRows.map {
+//                println(it.toList())
+//            }
+            cols.forEachIndexed { rowIndex, colValues ->
+                colValues.forEachIndexed { colIndex, d ->
+//                    newRows[rowIndex][colIndex] = d
+                    newRows[colIndex][rowIndex] = d
                 }
             }
-            return makeFromRows(rows)
+            return makeFromRows(newRows)
         }
 
         private fun validateSize(items: Array<DoubleArray>) {
