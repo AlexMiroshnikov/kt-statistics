@@ -24,13 +24,10 @@ class MultipleLinear {
     //        }.toTypedArray())
 
     fun coefs(): Matrix {
-        //        println("y:\n" + y.toList())
+        val columnOne = DoubleArray(xs.first().size) { 1.0 }
+        val X = Matrix.makeFromCols(arrayOf(columnOne).plus(xs))
         val Y = Matrix.makeFromCols(arrayOf(y))
-        val xRows = xs.map { doubleArrayOf(1.0).plus(it) }.toTypedArray()
-        val X = Matrix.makeFromRows(xRows)
         val XT = X.transpose()
-        val XTtimesX = XT.times(X)
-        println(XTtimesX.dimensions())
-        return Matrix.makeFromCols(Y.cols())
+        return XT.times(X).invert().times(XT).times(Y)
     }
 }

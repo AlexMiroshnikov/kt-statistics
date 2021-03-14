@@ -13,6 +13,9 @@ internal class MultipleLinearTest {
                 intArrayOf(7, 6, 4, 5, 6).map { it.toDouble() }.toDoubleArray(),
                 intArrayOf(10, 20, 60, 40, 50).map { it.toDouble() }.toDoubleArray()
             )
-        assertEquals("51.9535 6.65116 -11.1628", ml.coefs().toSingleLine())
+        assertEquals(
+            "51.953488372093005 6.651162790697665 -11.162790697674431",
+            ml.coefs().toSingleLine()
+        )
     }
 }
