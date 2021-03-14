@@ -25,9 +25,11 @@ class Matrix {
 
         fun makeFromCols(cols: Array<DoubleArray>): Matrix {
             //            validateSize(cols)
-            val newRows = Array(cols.size) { DoubleArray(cols.first().size) }
+            val newRows = Array(cols.first().size) { DoubleArray(cols.size) }
             cols.forEachIndexed { colIndex, colValues ->
-                colValues.forEachIndexed { rowIndex, d -> newRows[rowIndex][colIndex] = d }
+                colValues.forEachIndexed { rowIndex, d ->
+                    newRows[rowIndex][colIndex] = d
+                }
             }
             return makeFromRows(newRows)
         }

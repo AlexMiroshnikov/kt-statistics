@@ -24,6 +24,7 @@ class MultipleLinear {
     //        }.toTypedArray())
 
     fun coefs(): Matrix {
+//        println("y:\n" + y.toList())
         val Y = Matrix.makeFromCols(arrayOf(y))
         val xRows = xs.map { doubleArrayOf(1.0).plus(it) }.toTypedArray()
         val X = Matrix.makeFromRows(xRows)
