@@ -18,14 +18,16 @@ class Normal(private val expectation: Double, private val stdDeviation: Double) 
         }
 
         private val SQRT_FROM_2 = sqrt(2.0)
+        private val SQRT_FROM_2_TIMES_PI = sqrt(2.0 * PI)
+        private const val ONE_HALF = 0.5
     }
 
     fun probabilityDensity(x: Double): Double {
-        return 1.0 / (stdDeviation * sqrt(2 * PI)) *
+        return 1.0 / (stdDeviation * SQRT_FROM_2_TIMES_PI) *
             E.pow(-(x - expectation).pow(2) / (2 * stdDeviation.pow(2)))
     }
 
     fun cumulativeProbability(x: Double): Double {
-        return 0.5 * (1 + Erf.calc((x - expectation) / (stdDeviation * SQRT_FROM_2)))
+        return ONE_HALF * (1 + Erf.calc((x - expectation) / (stdDeviation * SQRT_FROM_2)))
     }
 }

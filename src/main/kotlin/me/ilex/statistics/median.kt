@@ -24,4 +24,4 @@ fun median(seq: DoubleArray): Double {
     return seq[floor((seq.size / 2).toDouble()).toInt()]
 }
 
-fun median(seq: Array<Int>): Double = median(seq.map { it.toDouble() }.toDoubleArray())
+fun median(seq: IntArray): Double = median(seq.map { it.toDouble() }.toDoubleArray())

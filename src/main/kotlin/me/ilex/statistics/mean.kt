@@ -8,4 +8,4 @@ fun mean(seq: DoubleArray): Double {
     return seq.average()
 }
 
-fun mean(seq: Array<Int>): Double = mean(seq.map { it.toDouble() }.toDoubleArray())
+fun mean(seq: IntArray): Double = mean(seq.map { it.toDouble() }.toDoubleArray())

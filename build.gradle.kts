@@ -5,12 +5,16 @@ plugins {
     id("tech.formatter-kt.formatter") version "0.7.3"
     id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
     id("jacoco")
+    id("io.gitlab.arturbosch.detekt") version "1.16.0"
 }
 
 group = "me.ilex"
 version = "0.0.1-dev"
 
-repositories { mavenCentral() }
+repositories {
+    mavenCentral()
+    jcenter()
+}
 
 dependencies {
     testImplementation(kotlin("test-junit5"))
@@ -20,6 +24,11 @@ dependencies {
 }
 
 jacoco { toolVersion = "0.8.6" }
+
+detekt {
+    config = files("./detekt.extend.yml")
+    buildUponDefaultConfig = true
+}
 
 tasks.test { useJUnitPlatform() }
 

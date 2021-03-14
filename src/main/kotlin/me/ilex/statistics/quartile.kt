@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName", "ReturnCount")
+
 package me.ilex.statistics
 
 enum class Quartile {
@@ -10,7 +12,7 @@ fun quartile(seq: DoubleArray, quartileNum: Quartile): Double {
     }
 
     if (seq.size == 1) {
-        return seq.first().toDouble()
+        return seq.first()
     }
 
     if (quartileNum == Quartile.SECOND) {
