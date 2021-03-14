@@ -51,6 +51,7 @@ class Matrix {
 
         private var determinantCache = mutableMapOf<String, Double>()
 
+        // @TODO Eliminate memory leak
         private fun getCachedDeterminant(m: Matrix): Double {
             val key = m.toSingleLine()
 
