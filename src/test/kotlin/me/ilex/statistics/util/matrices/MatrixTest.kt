@@ -88,12 +88,15 @@ internal class MatrixTest {
 
     @Test
     fun `minor - returns expected result`() {
-        val m = Matrix.makeFromRows(arrayOf(
-            intArrayOf(1, 0, 0, 0),
-            intArrayOf(3, 1, 0, 0),
-            intArrayOf(-5, 2, 1, 0),
-            intArrayOf(7, -3, 2, 1)
-        ))
+        val m =
+            Matrix.makeFromRows(
+                arrayOf(
+                    intArrayOf(1, 0, 0, 0),
+                    intArrayOf(3, 1, 0, 0),
+                    intArrayOf(-5, 2, 1, 0),
+                    intArrayOf(7, -3, 2, 1)
+                )
+            )
 
         assertEquals("1.0 0.0 0.0 2.0 1.0 0.0 -3.0 2.0 1.0", m.getMinor(0, 0).toSingleLine())
         assertEquals("1.0 0.0 0.0 3.0 1.0 0.0 -5.0 2.0 1.0", m.getMinor(3, 3).toSingleLine())
@@ -101,13 +104,19 @@ internal class MatrixTest {
 
     @Test
     fun `invert - returns expected result`() {
-        val m = Matrix.makeFromRows(arrayOf(
-            intArrayOf(1, 3, -5, 7),
-            intArrayOf(0, 1, 2, -3),
-            intArrayOf(0, 0, 1, 2),
-            intArrayOf(0, 0, 0, 1)
-        ))
+        val m =
+            Matrix.makeFromRows(
+                arrayOf(
+                    intArrayOf(1, 3, -5, 7),
+                    intArrayOf(0, 1, 2, -3),
+                    intArrayOf(0, 0, 1, 2),
+                    intArrayOf(0, 0, 0, 1)
+                )
+            )
         val i = m.invert()
-        assertEquals("1.0 -3.0 11.0 -38.0 0.0 1.0 -2.0 7.0 0.0 0.0 0.1 -2.0 0.0 0.0 0.0 1", i.toSingleLine())
+        assertEquals(
+            "1.0 -3.0 11.0 -38.0 0.0 1.0 -2.0 7.0 0.0 0.0 1.0 -2.0 0.0 0.0 0.0 1.0",
+            i.toSingleLine()
+        )
     }
 }

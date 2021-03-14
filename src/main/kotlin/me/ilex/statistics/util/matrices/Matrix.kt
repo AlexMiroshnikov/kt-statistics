@@ -27,9 +27,7 @@ class Matrix {
             //            validateSize(cols)
             val newRows = Array(cols.first().size) { DoubleArray(cols.size) }
             cols.forEachIndexed { colIndex, colValues ->
-                colValues.forEachIndexed { rowIndex, d ->
-                    newRows[rowIndex][colIndex] = d
-                }
+                colValues.forEachIndexed { rowIndex, d -> newRows[rowIndex][colIndex] = d }
             }
             return makeFromRows(newRows)
         }
@@ -131,9 +129,29 @@ class Matrix {
 
     fun invert(): Matrix {
         validateIfIsSquare()
+
+        val d = determinant()
         val t = transpose()
 
-        return makeFromRows(emptyArray<DoubleArray>())
+        val newRows =
+            t.rows
+                .mapIndexed { rowIndex, doubles ->
+                    doubles
+                        .mapIndexed { colIndex, _ ->
+                            val m = t.getMinor(rowIndex, colIndex)
+                            var minorD = m.determinant()
+
+                            if ((rowIndex + 1 + colIndex + 1) % 2 != 0 && minorD != 0.0) {
+                                minorD = -minorD
+                            }
+
+                            minorD / d
+                        }
+                        .toDoubleArray()
+                }
+                .toTypedArray()
+
+        return makeFromRows(newRows)
     }
 
     fun determinant(): Double {
@@ -163,13 +181,10 @@ class Matrix {
     }
 
     fun getMinor(i: Int, j: Int): Matrix {
-        val newRows = rows.filterIndexed { index, _ ->
-            index != i
-        }.map {
-            it.filterIndexed { index, d ->
-                index != j
-            }.toDoubleArray()
-        }.toTypedArray()
+        val newRows =
+            rows.filterIndexed { index, _ -> index != i }
+                .map { it.filterIndexed { index, _ -> index != j }.toDoubleArray() }
+                .toTypedArray()
         return makeFromRows(newRows)
     }
 
