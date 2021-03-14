@@ -28,6 +28,7 @@ class MultipleLinear {
     //            arg.map { it.toDouble() }.toDoubleArray()
     //        }.toTypedArray())
 
+    @Suppress("naming.VariableNaming")
     fun coefs(): Matrix {
         val columnOne = DoubleArray(xs.first().size) { 1.0 }
         val X = Matrix.makeFromCols(arrayOf(columnOne).plus(xs))

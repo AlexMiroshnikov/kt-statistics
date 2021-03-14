@@ -1,6 +1,7 @@
 package me.ilex.statistics.util.matrices
 
 import me.ilex.statistics.exceptions.InvalidArgumentException
+import me.ilex.statistics.util.matrices.exceptions.MatrixLogicException
 
 class Matrix {
     private var rows: Array<DoubleArray>
@@ -226,7 +227,7 @@ class Matrix {
     private fun validateIfIsSquare() {
         if (!isSquare()) {
             val (d1, d2) = dimensions()
-            throw Exception(
+            throw MatrixLogicException(
                 "Only square matrices can be inverted, while actual dimensions are ${d1}x$d2"
             )
         }

@@ -3,6 +3,7 @@ package me.ilex.statistics.util.matrices
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import me.ilex.statistics.exceptions.InvalidArgumentException
+import me.ilex.statistics.util.matrices.exceptions.MatrixLogicException
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -181,6 +182,6 @@ internal class MatrixTest {
     @Test
     fun `determinant on not square matrix throws an exception`() {
         val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2)))
-        assertThrows<Exception> { m.determinant() }
+        assertThrows<MatrixLogicException> { m.determinant() }
     }
 }
