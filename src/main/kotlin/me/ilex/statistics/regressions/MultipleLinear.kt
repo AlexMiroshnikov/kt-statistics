@@ -19,6 +19,11 @@ class MultipleLinear {
         xs = args.slice(IntRange(0, args.size - 2))
     }
 
+    constructor(xs: List<DoubleArray>, y: DoubleArray) {
+        this.y = y
+        this.xs = xs
+    }
+
     //    constructor(vararg args: IntArray) : this(args.map { arg ->
     //            arg.map { it.toDouble() }.toDoubleArray()
     //        }.toTypedArray())
