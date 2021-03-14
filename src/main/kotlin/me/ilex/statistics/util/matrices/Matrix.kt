@@ -25,20 +25,11 @@ class Matrix {
 
         fun makeFromCols(cols: Array<DoubleArray>): Matrix {
             //            validateSize(cols)
-//            println("Passed cols:")
-//            cols.map {
-//                println(it.toList())
-//            }
-//            println("New matrix: ${cols.size}x${cols.first().size}")
             val newRows = Array(cols.size) { DoubleArray(cols.first().size) }
-//            println("Empty new rows:")
-//            newRows.map {
-//                println(it.toList())
-//            }
-            cols.forEachIndexed { rowIndex, colValues ->
-                colValues.forEachIndexed { colIndex, d ->
-//                    newRows[rowIndex][colIndex] = d
-                    newRows[colIndex][rowIndex] = d
+            cols.forEachIndexed { colIndex, colValues ->
+                colValues.forEachIndexed { rowIndex, d ->
+//                    newRows[colIndex][rowIndex] = d
+                    newRows[rowIndex][colIndex] = d
                 }
             }
             return makeFromRows(newRows)
