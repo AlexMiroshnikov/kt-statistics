@@ -86,6 +86,12 @@ class Matrix {
             )
         }
 
+        if (rows.first().size != m.rows.first().size) {
+            throw InvalidArgumentException(
+                "Incompatible matrix dimensions: ${rows.first().size} vs ${m.rows.first().size}"
+            )
+        }
+
         m.rows
             .forEachIndexed { rowIndex, doubles ->
                 doubles.forEachIndexed { colIndex, d -> rows[rowIndex][colIndex] += d }

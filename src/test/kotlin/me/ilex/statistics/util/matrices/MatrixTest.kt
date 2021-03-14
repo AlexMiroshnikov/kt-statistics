@@ -1,9 +1,22 @@
 package me.ilex.statistics.util.matrices
 
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
+import me.ilex.statistics.exceptions.InvalidArgumentException
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class MatrixTest {
+
+    private val standardOut = System.out
+    private val outputStreamCaptor = ByteArrayOutputStream()
+
+    @AfterEach
+    fun tearDown() {
+        System.setOut(standardOut)
+    }
 
     @Test
     fun `toSingleLine - returns expected data`() {
@@ -19,10 +32,22 @@ internal class MatrixTest {
     }
 
     @Test
+    fun `addColumn - throws an exception - when column of unexpected size is given`() {
+        val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4)))
+        assertThrows<InvalidArgumentException> { m.addColumn(intArrayOf(5)) }
+    }
+
+    @Test
     fun `addRow - appends row to the end`() {
         val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4)))
         m.addRow(intArrayOf(5, 6))
         assertEquals("1.0 2.0 3.0 4.0 5.0 6.0", m.toSingleLine())
+    }
+
+    @Test
+    fun `addRow - throws an exception - when row of unexpected size is given`() {
+        val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4)))
+        assertThrows<InvalidArgumentException> { m.addRow(intArrayOf(5)) }
     }
 
     @Test
@@ -31,6 +56,19 @@ internal class MatrixTest {
         val m2 = Matrix.makeFromRows(arrayOf(intArrayOf(3, 4)))
         m1.plus(m2)
         assertEquals("4.0 6.0", m1.toSingleLine())
+    }
+    @Test
+    fun `plus - throws an exception - when arg has unexpected rows length`() {
+        val m1 = Matrix.makeFromRows(arrayOf(intArrayOf(1)))
+        val m2 = Matrix.makeFromCols(arrayOf(doubleArrayOf(2.0, 3.0)))
+        assertThrows<InvalidArgumentException> { m1.plus(m2) }
+    }
+
+    @Test
+    fun `plus - throws an exception - when arg has unexpected cols length`() {
+        val m1 = Matrix.makeFromRows(arrayOf(intArrayOf(1)))
+        val m2 = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2)))
+        assertThrows<InvalidArgumentException> { m1.plus(m2) }
     }
 
     @Test
@@ -118,5 +156,31 @@ internal class MatrixTest {
             "1.0 -3.0 11.0 -38.0 0.0 1.0 -2.0 7.0 0.0 0.0 1.0 -2.0 0.0 0.0 0.0 1.0",
             i.toSingleLine()
         )
+    }
+
+    @Test
+    fun `constructor throws an exception - when empty array is passed`() {
+        assertThrows<InvalidArgumentException> { Matrix.makeFromRows(emptyArray<DoubleArray>()) }
+    }
+
+    @Test
+    fun `constructor throws an exception - when array members have unequal sizes`() {
+        assertThrows<InvalidArgumentException> {
+            Matrix.makeFromRows(arrayOf(doubleArrayOf(1.0), doubleArrayOf(1.0, 2.0)))
+        }
+    }
+
+    @Test
+    fun `println returns expected output`() {
+        System.setOut(PrintStream(outputStreamCaptor))
+        val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4)))
+        m.println()
+        assertEquals("1.0 2.0\n3.0 4.0", outputStreamCaptor.toString().trim())
+    }
+
+    @Test
+    fun `determinant on not square matrix throws an exception`() {
+        val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2)))
+        assertThrows<Exception> { m.determinant() }
     }
 }
