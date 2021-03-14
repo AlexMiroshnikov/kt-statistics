@@ -52,4 +52,42 @@ internal class MatrixTest {
         val m = a.times(b)
         assertEquals("31.0 40.0 7.0 10.0 16.0 22.0", m.toSingleLine())
     }
+
+    @Test
+    fun `makeFromCols - returns expected result`() {
+        val m = Matrix.makeFromCols(arrayOf(
+            doubleArrayOf(-2.0, 1.0, 1.0),
+            doubleArrayOf(1.0, 3.0, 1.0),
+            doubleArrayOf(-1.0, 1.0, -4.0)
+        ))
+        assertEquals("-2.0 1.0 -1.0 1.0 3.0 1.0 1.0 1.0 -4.0", m.toSingleLine())
+    }
+
+    @Test
+    fun `determinant - returns expected result`() {
+        listOf(
+            /*
+            Pair(
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(3, 4)
+                ),
+                -2.0
+            ),
+            */
+            Pair(
+                arrayOf(
+                    intArrayOf(1, 1, 1, -1),
+                    intArrayOf(1, -2, 1, -1),
+                    intArrayOf(1, 1, 3, 1),
+                    intArrayOf(1, 1, 1, -4)
+                ),
+                30.0
+            )
+        ).forEach {
+            val (rows, expected) = it
+            val m = Matrix.makeFromRows(rows)
+            assertEquals(expected, m.determinant())
+        }
+    }
 }

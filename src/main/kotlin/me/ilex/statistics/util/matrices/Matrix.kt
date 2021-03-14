@@ -26,7 +26,11 @@ class Matrix {
         fun makeFromCols(cols: Array<DoubleArray>): Matrix {
             //            validateSize(cols)
             val rows = Array(cols.size) { DoubleArray(cols.first().size) }
-            cols.forEachIndexed { index, doubles -> rows[index] = doubles }
+            cols.forEachIndexed { colIndex, colValues ->
+                colValues.forEachIndexed { rowIndex, d ->
+                    rows[rowIndex][colIndex] = d
+                }
+            }
             return makeFromRows(rows)
         }
 
@@ -120,6 +124,68 @@ class Matrix {
         return Pair(rows.size, rows.first().size)
     }
 
+    fun isSquare(): Boolean {
+        val (d1, d2) = dimensions()
+        return d1 == d2
+    }
+
+    fun invert(): Matrix {
+        validateIfIsSquare()
+        return makeFromRows(emptyArray<DoubleArray>())
+    }
+
+    fun determinant(): Double {
+        validateIfIsSquare()
+
+        if (dimensions().first == 2) {
+            return rows[0][0] * rows[1][1] - rows[0][1] * rows[1][0]
+        }
+
+        var result = 0.0
+        var d: Double
+        var m: Matrix
+
+        rows[0].forEachIndexed { colIndex, value ->
+            var c = cols().toList()
+            println("\n\nIteration\n")
+            println("original cols of $colIndex")
+            c.map {
+                println(it.toList())
+            }
+            c = c.filterIndexed { index, _ -> index != colIndex }
+            println("filtered cols of $colIndex")
+            c.map {
+                println(it.toList())
+            }
+            c = c.map {
+                it.drop(1).toDoubleArray()
+            }
+            println("DROPPED cols of $colIndex")
+            c.map {
+                println(it.toList())
+            }
+            m = makeFromCols(c.toTypedArray())
+            println("GOT MATRIX:")
+            m.println()
+//            m = makeFromCols(cols().filterIndexed { index, _ -> index != colIndex }.map {
+//                it.drop(1).toDoubleArray()
+//            }.toTypedArray())
+
+            d = value * m.determinant()
+
+            if (colIndex % 2 != 0) {
+                d = -d
+            }
+
+//            println("* $value x")
+//            m.println()
+
+            result += d
+        }
+
+        return result
+    }
+
     fun println() {
         println(rows.joinToString("\n") { it.joinToString(" ") })
     }
@@ -132,5 +198,12 @@ class Matrix {
         }
 
         return result
+    }
+
+    private fun validateIfIsSquare() {
+        if (!isSquare()) {
+            val (d1, d2) = dimensions()
+            throw Exception("Only square matrices can be inverted, while actual dimensions are ${d1}x${d2}")
+        }
     }
 }
