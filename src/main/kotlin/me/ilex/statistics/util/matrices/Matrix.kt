@@ -149,13 +149,7 @@ class Matrix {
 
         rows[0]
             .forEachIndexed { colIndex, value ->
-                val cols =
-                    cols().toList()
-                        .filterIndexed { index, _ -> index != colIndex }
-                        .map { it.drop(1).toDoubleArray() }
-                        .toTypedArray()
-
-                m = makeFromCols(cols)
+                m = getMinor(0, colIndex)
                 d = value * m.determinant()
 
                 if (colIndex % 2 != 0) {
