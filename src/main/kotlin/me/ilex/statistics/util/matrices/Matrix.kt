@@ -27,10 +27,7 @@ class Matrix {
             //            validateSize(cols)
             val newRows = Array(cols.size) { DoubleArray(cols.first().size) }
             cols.forEachIndexed { colIndex, colValues ->
-                colValues.forEachIndexed { rowIndex, d ->
-//                    newRows[colIndex][rowIndex] = d
-                    newRows[rowIndex][colIndex] = d
-                }
+                colValues.forEachIndexed { rowIndex, d -> newRows[rowIndex][colIndex] = d }
             }
             return makeFromRows(newRows)
         }
@@ -110,7 +107,7 @@ class Matrix {
     }
 
     fun transpose(): Matrix {
-        return makeFromCols(cols())
+        return makeFromRows(cols())
     }
 
     fun cols(): Array<DoubleArray> {
@@ -146,24 +143,23 @@ class Matrix {
         var d: Double
         var m: Matrix
 
-        rows[0].forEachIndexed { colIndex, value ->
-            val cols = cols()
-                .toList()
-                .filterIndexed { index, _ -> index != colIndex }
-                .map {
-                    it.drop(1).toDoubleArray()
+        rows[0]
+            .forEachIndexed { colIndex, value ->
+                val cols =
+                    cols().toList()
+                        .filterIndexed { index, _ -> index != colIndex }
+                        .map { it.drop(1).toDoubleArray() }
+                        .toTypedArray()
+
+                m = makeFromCols(cols)
+                d = value * m.determinant()
+
+                if (colIndex % 2 != 0) {
+                    d = -d
                 }
-                .toTypedArray()
 
-            m = makeFromCols(cols)
-            d = value * m.determinant()
-
-            if (colIndex % 2 != 0) {
-                d = -d
+                result += d
             }
-
-            result += d
-        }
 
         return result
     }
@@ -185,7 +181,9 @@ class Matrix {
     private fun validateIfIsSquare() {
         if (!isSquare()) {
             val (d1, d2) = dimensions()
-            throw Exception("Only square matrices can be inverted, while actual dimensions are ${d1}x${d2}")
+            throw Exception(
+                "Only square matrices can be inverted, while actual dimensions are ${d1}x$d2"
+            )
         }
     }
 }

@@ -36,12 +36,7 @@ internal class MatrixTest {
     @Test
     fun `transpose - returns expected result`() {
         val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4), intArrayOf(5, 6)))
-        println("Original matrix")
-        m.println()
-
         val t = m.transpose()
-//        t.println()
-
         assertEquals("1.0 3.0 5.0 2.0 4.0 6.0", t.toSingleLine())
     }
 
@@ -58,32 +53,22 @@ internal class MatrixTest {
 
     @Test
     fun `makeFromCols - returns expected result`() {
-        val m = Matrix.makeFromCols(arrayOf(
-            doubleArrayOf(-2.0, 1.0, 1.0),
-            doubleArrayOf(1.0, 3.0, 1.0),
-            doubleArrayOf(-1.0, 1.0, -4.0)
-        ))
+        val m =
+            Matrix.makeFromCols(
+                arrayOf(
+                    doubleArrayOf(-2.0, 1.0, 1.0),
+                    doubleArrayOf(1.0, 3.0, 1.0),
+                    doubleArrayOf(-1.0, 1.0, -4.0)
+                )
+            )
         assertEquals("-2.0 1.0 -1.0 1.0 3.0 1.0 1.0 1.0 -4.0", m.toSingleLine())
     }
 
     @Test
     fun `determinant - returns expected result`() {
         listOf(
-            Pair(
-                arrayOf(
-                    intArrayOf(1, 2),
-                    intArrayOf(3, 4)
-                ),
-                -2.0
-            ),
-            Pair(
-                arrayOf(
-                    intArrayOf(1, 4, 3),
-                    intArrayOf(2, 1, 5),
-                    intArrayOf(3, 2, 1)
-                ),
-                46.0
-            ),
+            Pair(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4)), -2.0),
+            Pair(arrayOf(intArrayOf(1, 4, 3), intArrayOf(2, 1, 5), intArrayOf(3, 2, 1)), 46.0),
             Pair(
                 arrayOf(
                     intArrayOf(4, 3, 2, 2),
@@ -93,10 +78,11 @@ internal class MatrixTest {
                 ),
                 -240.0
             )
-        ).forEach {
-            val (rows, expected) = it
-            val m = Matrix.makeFromRows(rows)
-            assertEquals(expected, m.determinant())
-        }
+        )
+            .forEach {
+                val (rows, expected) = it
+                val m = Matrix.makeFromRows(rows)
+                assertEquals(expected, m.determinant())
+            }
     }
 }
