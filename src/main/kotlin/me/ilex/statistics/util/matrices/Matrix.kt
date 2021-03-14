@@ -92,6 +92,18 @@ class Matrix {
         return this
     }
 
+    fun times(m: Matrix): Matrix {
+        val mCols = m.cols()
+        val newRows = Array(rows.size) { DoubleArray(mCols.size) }
+        rows.forEachIndexed { rowIndex, doubles ->
+            mCols.indices
+                .forEach { colIndex ->
+                    newRows[rowIndex][colIndex] = calcTimesForIJ(doubles, mCols[colIndex])
+                }
+        }
+        return Matrix(newRows)
+    }
+
     fun transpose(): Matrix {
         return makeFromCols(cols())
     }
@@ -106,5 +118,15 @@ class Matrix {
 
     fun println() {
         println(rows.joinToString("\n") { it.joinToString(" ") })
+    }
+
+    private fun calcTimesForIJ(row: DoubleArray, col: DoubleArray): Double {
+        var result = 0.0
+
+        for (i in row.indices) {
+            result += (row[i] * col[i])
+        }
+
+        return result
     }
 }

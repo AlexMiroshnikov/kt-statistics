@@ -41,4 +41,15 @@ internal class MatrixTest {
 
         assertEquals("1.0 3.0 5.0 2.0 4.0 6.0", t.toSingleLine())
     }
+
+    @Test
+    fun `times - returns expected result`() {
+        val a =
+            Matrix.makeFromRows(
+                arrayOf(intArrayOf(2, 3, 4), intArrayOf(1, 2, 0), intArrayOf(2, 3, 1))
+            )
+        val b = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4), intArrayOf(5, 6)))
+        val m = a.times(b)
+        assertEquals("31.0 40.0 7.0 10.0 16.0 22.0", m.toSingleLine())
+    }
 }
