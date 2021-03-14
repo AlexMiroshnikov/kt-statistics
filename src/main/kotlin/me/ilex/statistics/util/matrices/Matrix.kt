@@ -23,10 +23,12 @@ class Matrix {
             )
         }
 
-        //        fun makeFromCols(cols: Array<DoubleArray>): Matrix {
-        //            validateSize(cols)
-        //            return Matrix()
-        //        }
+        fun makeFromCols(cols: Array<DoubleArray>): Matrix {
+            //            validateSize(cols)
+            val rows = Array(cols.size) { DoubleArray(cols.first().size) }
+            cols.forEachIndexed { index, doubles -> rows[index] = doubles }
+            return makeFromRows(rows)
+        }
 
         private fun validateSize(items: Array<DoubleArray>) {
             if (items.isEmpty()) {
@@ -88,5 +90,21 @@ class Matrix {
             }
 
         return this
+    }
+
+    fun transpose(): Matrix {
+        return makeFromCols(cols())
+    }
+
+    fun cols(): Array<DoubleArray> {
+        val cols = Array(rows.first().size) { DoubleArray(rows.size) }
+        rows.forEachIndexed { rowIndex, doubles ->
+            doubles.forEachIndexed { colIndex, d -> cols[colIndex][rowIndex] = d }
+        }
+        return cols
+    }
+
+    fun println() {
+        println(rows.joinToString("\n") { it.joinToString(" ") })
     }
 }

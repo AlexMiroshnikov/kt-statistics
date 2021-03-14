@@ -32,4 +32,13 @@ internal class MatrixTest {
         m1.plus(m2)
         assertEquals("4.0 6.0", m1.toSingleLine())
     }
+
+    @Test
+    fun `transpose - returns expected result`() {
+        val m = Matrix.makeFromRows(arrayOf(intArrayOf(1, 2), intArrayOf(3, 4), intArrayOf(5, 6)))
+
+        val t = m.transpose()
+
+        assertEquals("1.0 3.0 5.0 2.0 4.0 6.0", t.toSingleLine())
+    }
 }
