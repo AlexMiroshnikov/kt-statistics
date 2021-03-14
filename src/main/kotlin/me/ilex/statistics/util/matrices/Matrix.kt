@@ -48,6 +48,18 @@ class Matrix {
                 }
             }
         }
+
+        private var determinantCache = mutableMapOf<String, Double>()
+
+        private fun getCachedDeterminant(m: Matrix): Double {
+            val key = m.toSingleLine()
+
+            if (!determinantCache.containsKey(key)) {
+                determinantCache[key] = m.determinant()
+            }
+
+            return determinantCache[key]!!
+        }
     }
 
     fun toSingleLine(): String {
@@ -145,7 +157,8 @@ class Matrix {
                     doubles
                         .mapIndexed { colIndex, _ ->
                             val m = t.getMinor(rowIndex, colIndex)
-                            var minorD = m.determinant()
+                            //                            var minorD = m.determinant()
+                            var minorD = getCachedDeterminant(m)
 
                             if ((rowIndex + 1 + colIndex + 1) % 2 != 0 && minorD != 0.0) {
                                 minorD = -minorD
@@ -174,7 +187,8 @@ class Matrix {
         rows[0]
             .forEachIndexed { colIndex, value ->
                 m = getMinor(0, colIndex)
-                d = value * m.determinant()
+                //                d = value * m.determinant()
+                d = value * getCachedDeterminant(m)
 
                 if (colIndex % 2 != 0) {
                     d = -d
