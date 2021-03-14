@@ -66,7 +66,6 @@ internal class MatrixTest {
     @Test
     fun `determinant - returns expected result`() {
         listOf(
-            /*
             Pair(
                 arrayOf(
                     intArrayOf(1, 2),
@@ -74,15 +73,22 @@ internal class MatrixTest {
                 ),
                 -2.0
             ),
-            */
             Pair(
                 arrayOf(
-                    intArrayOf(1, 1, 1, -1),
-                    intArrayOf(1, -2, 1, -1),
-                    intArrayOf(1, 1, 3, 1),
-                    intArrayOf(1, 1, 1, -4)
+                    intArrayOf(1, 4, 3),
+                    intArrayOf(2, 1, 5),
+                    intArrayOf(3, 2, 1)
                 ),
-                30.0
+                46.0
+            ),
+            Pair(
+                arrayOf(
+                    intArrayOf(4, 3, 2, 2),
+                    intArrayOf(0, 1, -3, 3),
+                    intArrayOf(0, -1, 3, 3),
+                    intArrayOf(0, 3, 1, 1)
+                ),
+                -240.0
             )
         ).forEach {
             val (rows, expected) = it

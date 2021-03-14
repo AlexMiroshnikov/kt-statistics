@@ -146,39 +146,20 @@ class Matrix {
         var m: Matrix
 
         rows[0].forEachIndexed { colIndex, value ->
-            var c = cols().toList()
-            println("\n\nIteration\n")
-            println("original cols of $colIndex")
-            c.map {
-                println(it.toList())
-            }
-            c = c.filterIndexed { index, _ -> index != colIndex }
-            println("filtered cols of $colIndex")
-            c.map {
-                println(it.toList())
-            }
-            c = c.map {
-                it.drop(1).toDoubleArray()
-            }
-            println("DROPPED cols of $colIndex")
-            c.map {
-                println(it.toList())
-            }
-            m = makeFromCols(c.toTypedArray())
-            println("GOT MATRIX:")
-            m.println()
-//            m = makeFromCols(cols().filterIndexed { index, _ -> index != colIndex }.map {
-//                it.drop(1).toDoubleArray()
-//            }.toTypedArray())
+            val cols = cols()
+                .toList()
+                .filterIndexed { index, _ -> index != colIndex }
+                .map {
+                    it.drop(1).toDoubleArray()
+                }
+                .toTypedArray()
 
+            m = makeFromCols(cols)
             d = value * m.determinant()
 
             if (colIndex % 2 != 0) {
                 d = -d
             }
-
-//            println("* $value x")
-//            m.println()
 
             result += d
         }
