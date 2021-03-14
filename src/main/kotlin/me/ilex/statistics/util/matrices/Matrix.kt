@@ -3,6 +3,7 @@ package me.ilex.statistics.util.matrices
 import me.ilex.statistics.exceptions.InvalidArgumentException
 import me.ilex.statistics.util.matrices.exceptions.MatrixLogicException
 
+@Suppress("TooManyFunctions")
 class Matrix {
     private var rows: Array<DoubleArray>
 

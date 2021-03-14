@@ -1,6 +1,6 @@
 package me.ilex.statistics
 
-fun mean(seq: Array<Double>): Double {
+fun mean(seq: DoubleArray): Double {
     if (seq.isEmpty()) {
         return 0.0
     }
@@ -8,4 +8,4 @@ fun mean(seq: Array<Double>): Double {
     return seq.average()
 }
 
-fun mean(seq: Array<Int>): Double = mean(seq.map { it.toDouble() }.toTypedArray())
+fun mean(seq: IntArray): Double = mean(seq.map { it.toDouble() }.toDoubleArray())

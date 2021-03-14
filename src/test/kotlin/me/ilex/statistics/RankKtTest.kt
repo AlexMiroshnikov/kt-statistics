@@ -8,7 +8,7 @@ internal class RankKtTest {
 
     @Test
     fun `returns expected ranks`() {
-        val seq = arrayOf(1, 2, 5, 1, 2)
+        val seq = intArrayOf(1, 2, 5, 1, 2)
         assertArrayEquals(
             arrayOf(
                 BigInteger.valueOf(1),

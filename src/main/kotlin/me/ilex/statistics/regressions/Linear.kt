@@ -5,13 +5,13 @@ import me.ilex.statistics.exceptions.InvalidArgumentException
 import me.ilex.statistics.mean
 
 class Linear {
-    private var x: Array<Double>
-    private var y: Array<Double>
+    private var x: DoubleArray
+    private var y: DoubleArray
 
     val a: Double
     val b: Double
 
-    constructor(x: Array<Double>, y: Array<Double>) {
+    constructor(x: DoubleArray, y: DoubleArray) {
         if (x.size != y.size) {
             throw InvalidArgumentException("size of x ${x.size} does not equal size of y ${y.size}")
         }
@@ -23,11 +23,11 @@ class Linear {
         a = calcA()
     }
 
-    constructor(x: Array<Int>, y: Array<Int>) :
-        this(x.map { it.toDouble() }.toTypedArray(), y.map { it.toDouble() }.toTypedArray())
+    constructor(x: IntArray, y: IntArray) :
+        this(x.map { it.toDouble() }.toDoubleArray(), y.map { it.toDouble() }.toDoubleArray())
 
     constructor(xy: Array<Pair<Double, Double>>) :
-        this(xy.map { it.first }.toTypedArray(), xy.map { it.second }.toTypedArray())
+        this(xy.map { it.first }.toDoubleArray(), xy.map { it.second }.toDoubleArray())
 
     fun y(x: Double): Double {
         return a + b * x
